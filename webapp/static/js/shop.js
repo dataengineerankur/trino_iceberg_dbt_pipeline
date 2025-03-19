@@ -262,17 +262,17 @@ function updateCartDisplay() {
             const itemTotal = item.product.price * item.quantity;
             
             const cartItem = `
-                <div class="cart-item">
+                <div class="cart-item fade-in">
                     <div class="cart-item-details">
                         <div class="cart-item-title">${item.product.name}</div>
-                        <div class="cart-item-price">$${item.product.price.toFixed(2)} each</div>
+                        <div class="cart-item-price">${item.product.price.toFixed(2)} each</div>
                     </div>
                     <div class="cart-item-actions">
                         <button class="btn btn-sm btn-outline-danger remove-from-cart" data-product-id="${item.product.id}">
                             <i class="fas fa-trash"></i>
                         </button>
                         <input type="number" class="form-control cart-quantity" data-product-id="${item.product.id}" value="${item.quantity}" min="1">
-                        <span class="ms-2">$${itemTotal.toFixed(2)}</span>
+                        <span class="ms-2">${itemTotal.toFixed(2)}</span>
                     </div>
                 </div>
             `;
@@ -286,9 +286,10 @@ function updateCartDisplay() {
     
     // Calculate and update total
     const total = calculateTotal();
-    cartTotal.text(`$${total.toFixed(2)}`);
-    checkoutTotal.text(`$${total.toFixed(2)}`);
-    checkoutSubtotal.text(`$${total.toFixed(2)}`);
+    // Fix: remove $ since it's added via CSS
+    cartTotal.text(total.toFixed(2));
+    checkoutTotal.text(total.toFixed(2));
+    checkoutSubtotal.text(total.toFixed(2));
 }
 
 // Function to update the offcanvas cart
@@ -310,13 +311,13 @@ function updateOffcanvasCart() {
             const itemTotal = item.product.price * item.quantity;
             
             const cartItem = `
-                <div class="cart-item">
+                <div class="cart-item fade-in">
                     <div class="cart-item-details">
                         <div class="cart-item-title">${item.product.name}</div>
-                        <div class="cart-item-price">$${item.product.price.toFixed(2)} × ${item.quantity}</div>
+                        <div class="cart-item-price">${item.product.price.toFixed(2)} × ${item.quantity}</div>
                     </div>
                     <div class="cart-item-actions">
-                        <span class="fw-bold">$${itemTotal.toFixed(2)}</span>
+                        <span class="fw-bold">${itemTotal.toFixed(2)}</span>
                     </div>
                 </div>
             `;
@@ -330,7 +331,8 @@ function updateOffcanvasCart() {
     
     // Calculate and update total
     const total = calculateTotal();
-    cartTotal.text(`$${total.toFixed(2)}`);
+    // Fix: remove $ since it's added via CSS
+    cartTotal.text(total.toFixed(2));
 }
 
 // Function to calculate cart total
@@ -402,7 +404,7 @@ function sendOrderToKafka() {
         zip: $('#zip').val()
     };
     
-    // Create order event
+    // Create order event with enhanced structure for easier processing
     const orderEvent = {
         id: 'order_' + Date.now(),
         type: 'order',
@@ -425,7 +427,10 @@ function sendOrderToKafka() {
             quantity: item.quantity,
             subtotal: item.product.price * item.quantity
         })),
-        total: calculateTotal()
+        total: calculateTotal(),
+        status: "PENDING",
+        payment_method: $('input[name="paymentMethod"]:checked').attr('id'),
+        order_date: new Date().toISOString().split('T')[0]  // Just the date portion for easier analysis
     };
     
     // Show loading state
@@ -441,16 +446,43 @@ function sendOrderToKafka() {
             use_docker_method: true
         }),
         success: function(response) {
-            // Show success message
+            // Show success message with more details and animation
             $('#checkout-tab-content').html(`
-                <div class="alert alert-success mb-4">
-                    <h4 class="alert-heading">Order Placed Successfully!</h4>
+                <div class="alert alert-success mb-4 fade-in">
+                    <h4 class="alert-heading"><i class="fas fa-check-circle me-2"></i>Order Placed Successfully!</h4>
                     <p>Your order has been received and will be processed soon.</p>
-                    <p>Order ID: ${orderEvent.id}</p>
+                    <p><strong>Order ID:</strong> ${orderEvent.id}</p>
+                    <p><strong>Total Amount:</strong> $${orderEvent.total.toFixed(2)}</p>
+                    <p><strong>Order Date:</strong> ${new Date().toLocaleString()}</p>
                 </div>
-                <div class="text-center">
-                    <button id="view-in-trino-btn" class="btn btn-primary me-2">View in Trino</button>
-                    <button id="continue-shopping-btn" class="btn btn-outline-secondary">Continue Shopping</button>
+                <div class="card mb-4 fade-in" style="animation-delay: 0.2s">
+                    <div class="card-header">
+                        <h5 class="mb-0">Order Summary</h5>
+                    </div>
+                    <div class="card-body">
+                        <h6>Ordered Items:</h6>
+                        <ul class="list-group mb-3">
+                            ${orderEvent.items.map(item => `
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    ${item.product_name} × ${item.quantity}
+                                    <span class="badge bg-primary rounded-pill">$${item.subtotal.toFixed(2)}</span>
+                                </li>
+                            `).join('')}
+                        </ul>
+                        <h6>Shipping to:</h6>
+                        <p class="mb-0">${formData.firstName} ${formData.lastName}</p>
+                        <p class="mb-0">${formData.address}</p>
+                        <p class="mb-0">${formData.state}, ${formData.zip}</p>
+                        <p>${formData.country}</p>
+                    </div>
+                </div>
+                <div class="text-center fade-in" style="animation-delay: 0.4s">
+                    <button id="view-in-trino-btn" class="btn btn-primary me-2">
+                        <i class="fas fa-database me-2"></i>View in Trino
+                    </button>
+                    <button id="continue-shopping-btn" class="btn btn-success">
+                        <i class="fas fa-shopping-bag me-2"></i>Continue Shopping
+                    </button>
                 </div>
             `);
             
@@ -492,11 +524,19 @@ function sendOrderToKafka() {
                 console.error('Error parsing error response:', e);
             }
             
-            // Show error message
-            $('#checkout-error').removeClass('d-none').text(errorMessage);
+            // Show error message with more details
+            $('#checkout-error').removeClass('d-none').html(`
+                <div class="d-flex align-items-center">
+                    <i class="fas fa-exclamation-circle text-danger me-3 fa-2x"></i>
+                    <div>
+                        <strong>Order could not be processed</strong><br>
+                        ${errorMessage}
+                    </div>
+                </div>
+            `);
             
             // Reset button
-            $('#place-order-btn').prop('disabled', false).text('Place Order');
+            $('#place-order-btn').prop('disabled', false).html('<i class="fas fa-check me-2"></i>Place Order');
         }
     });
 }
