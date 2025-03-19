@@ -1,0 +1,78 @@
+[0m21:48:38.994866 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x104a19a00>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x110bc3bb0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x110bc3160>]}
+
+
+============================== 21:48:38.997614 | 05d88dbf-a7f4-44ab-8d0e-991c5ee683f9 ==============================
+[0m21:48:38.997614 [info ] [MainThread]: Running with dbt=1.8.7
+[0m21:48:38.997982 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': '/Users/ankurchopra/repo_projects/projects/trino_iceberg_dbt_pipeline/dbt', 'debug': 'False', 'version_check': 'True', 'log_path': 'logs', 'fail_fast': 'False', 'warn_error': 'None', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'empty': 'False', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'introspect': 'True', 'invocation_command': 'dbt run --models kafka_to_iceberg.events_streaming', 'static_parser': 'True', 'target_path': 'None', 'log_format': 'default', 'send_anonymous_usage_stats': 'True'}
+[0m21:48:38.998359 [error] [MainThread]: Encountered an error:
+Runtime Error
+  No dbt_project.yml found at expected path /Users/ankurchopra/repo_projects/projects/trino_iceberg_dbt_pipeline/dbt/dbt_project.yml
+  Verify that each entry within packages.yml (and their transitive dependencies) contains a file named dbt_project.yml
+  
+[0m21:48:39.011245 [debug] [MainThread]: Resource report: {"command_name": "run", "command_wall_clock_time": 0.068379454, "process_user_time": 0.76702, "process_kernel_time": 0.127892, "process_mem_max_rss": "93241344", "command_success": false, "process_in_blocks": "0", "process_out_blocks": "0"}
+[0m21:48:39.011711 [debug] [MainThread]: Command `dbt run` failed at 21:48:39.011653 after 0.07 seconds
+[0m21:48:39.011962 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x104a19a00>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x110b58610>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x110b2f6d0>]}
+[0m21:48:39.012205 [debug] [MainThread]: Flushing usage events
+[0m22:01:49.023985 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x107d31a60>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1134ce4c0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1134ce310>]}
+
+
+============================== 22:01:49.026741 | 3978ccb4-bfc9-43bb-a196-b5a22244aac0 ==============================
+[0m22:01:49.026741 [info ] [MainThread]: Running with dbt=1.8.7
+[0m22:01:49.027101 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'debug': 'False', 'profiles_dir': '/Users/ankurchopra/repo_projects/projects/trino_iceberg_dbt_pipeline/dbt', 'log_path': '/Users/ankurchopra/repo_projects/projects/trino_iceberg_dbt_pipeline/dbt/logs', 'version_check': 'True', 'fail_fast': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'empty': 'False', 'quiet': 'False', 'no_print': 'None', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'static_parser': 'True', 'log_format': 'default', 'invocation_command': 'dbt run --models kafka_to_iceberg.events_streaming', 'target_path': 'None', 'introspect': 'True', 'send_anonymous_usage_stats': 'True'}
+[0m22:01:49.030150 [info ] [MainThread]: Error importing adapter: No module named 'dbt.adapters.trino'
+[0m22:01:49.030506 [error] [MainThread]: Encountered an error:
+Runtime Error
+  Credentials in profile "iceberg_project", target "dev" invalid: Runtime Error
+    Could not find adapter type trino!
+[0m22:01:49.031799 [debug] [MainThread]: Resource report: {"command_name": "run", "command_wall_clock_time": 0.05574879, "process_user_time": 0.747094, "process_kernel_time": 0.104019, "process_mem_max_rss": "92749824", "command_success": false, "process_in_blocks": "0", "process_out_blocks": "0"}
+[0m22:01:49.032158 [debug] [MainThread]: Command `dbt run` failed at 22:01:49.032102 after 0.06 seconds
+[0m22:01:49.032380 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x107d31a60>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x11336f3d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1134ce550>]}
+[0m22:01:49.032598 [debug] [MainThread]: Flushing usage events
+[0m22:02:59.961191 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1051659d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x120903f40>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1209031f0>]}
+
+
+============================== 22:02:59.963917 | f426d1f2-3915-47e6-84c9-5835b59a74db ==============================
+[0m22:02:59.963917 [info ] [MainThread]: Running with dbt=1.8.7
+[0m22:02:59.964284 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'version_check': 'True', 'profiles_dir': '/Users/ankurchopra/repo_projects/projects/trino_iceberg_dbt_pipeline/dbt', 'log_path': '/Users/ankurchopra/repo_projects/projects/trino_iceberg_dbt_pipeline/dbt/logs', 'fail_fast': 'False', 'debug': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'empty': 'False', 'log_format': 'default', 'invocation_command': 'dbt run --models kafka_to_iceberg.events_streaming', 'introspect': 'True', 'static_parser': 'True', 'target_path': 'None', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'send_anonymous_usage_stats': 'True'}
+[0m22:02:59.967368 [info ] [MainThread]: Error importing adapter: No module named 'dbt.adapters.trino'
+[0m22:02:59.967753 [error] [MainThread]: Encountered an error:
+Runtime Error
+  Credentials in profile "iceberg_project", target "dev" invalid: Runtime Error
+    Could not find adapter type trino!
+[0m22:02:59.969064 [debug] [MainThread]: Resource report: {"command_name": "run", "command_wall_clock_time": 0.054531917, "process_user_time": 0.749328, "process_kernel_time": 0.109188, "process_mem_max_rss": "92733440", "command_success": false, "process_in_blocks": "0", "process_out_blocks": "0"}
+[0m22:02:59.969497 [debug] [MainThread]: Command `dbt run` failed at 22:02:59.969434 after 0.06 seconds
+[0m22:02:59.969744 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1051659d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1208bf7c0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1208aa100>]}
+[0m22:02:59.969981 [debug] [MainThread]: Flushing usage events
+[0m22:05:17.997402 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x107b5c5e0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1095139d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x109513ee0>]}
+
+
+============================== 22:05:18.000257 | 9e33f42a-3694-4e46-a025-ac0cc273240a ==============================
+[0m22:05:18.000257 [info ] [MainThread]: Running with dbt=1.9.3
+[0m22:05:18.000679 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'fail_fast': 'False', 'debug': 'False', 'log_path': '/Users/ankurchopra/repo_projects/projects/trino_iceberg_dbt_pipeline/dbt/logs', 'version_check': 'True', 'profiles_dir': '/Users/ankurchopra/repo_projects/projects/trino_iceberg_dbt_pipeline/dbt', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'empty': 'False', 'log_format': 'default', 'introspect': 'True', 'invocation_command': 'dbt run --models kafka_to_iceberg.events_streaming', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'target_path': 'None', 'static_parser': 'True', 'send_anonymous_usage_stats': 'True'}
+[0m22:05:18.187969 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '9e33f42a-3694-4e46-a025-ac0cc273240a', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10594db50>]}
+[0m22:05:18.233854 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '9e33f42a-3694-4e46-a025-ac0cc273240a', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10a01b610>]}
+[0m22:05:18.234342 [info ] [MainThread]: Registered adapter: trino=1.9.0
+[0m22:05:18.303262 [debug] [MainThread]: checksum: 5671c00892cdbcef29c3b00cc5ba7510c3d18a35c883caeb9ab9ee266dc29c8f, vars: {}, profile: , target: , version: 1.9.3
+[0m22:05:18.303733 [info ] [MainThread]: Unable to do partial parsing because saved manifest not found. Starting full parse.
+[0m22:05:18.303990 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'partial_parser', 'label': '9e33f42a-3694-4e46-a025-ac0cc273240a', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10a0e2b20>]}
+[0m22:05:18.818289 [warn ] [MainThread]: [[33mWARNING[0m]: Configuration paths exist in your dbt_project.yml file which do not apply to any resources.
+There are 2 unused configuration paths:
+- models.iceberg_project.kafka_to_iceberg
+- models.iceberg_project
+[0m22:05:18.821887 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '9e33f42a-3694-4e46-a025-ac0cc273240a', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10a522ee0>]}
+[0m22:05:18.849534 [debug] [MainThread]: Wrote artifact WritableManifest to /Users/ankurchopra/repo_projects/projects/trino_iceberg_dbt_pipeline/dbt/target/manifest.json
+[0m22:05:18.850914 [debug] [MainThread]: Wrote artifact SemanticManifest to /Users/ankurchopra/repo_projects/projects/trino_iceberg_dbt_pipeline/dbt/target/semantic_manifest.json
+[0m22:05:18.856475 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': '9e33f42a-3694-4e46-a025-ac0cc273240a', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10a4d05e0>]}
+[0m22:05:18.856790 [info ] [MainThread]: Found 454 macros
+[0m22:05:18.857008 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '9e33f42a-3694-4e46-a025-ac0cc273240a', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10a50aa60>]}
+[0m22:05:18.857342 [warn ] [MainThread]: The selection criterion 'kafka_to_iceberg.events_streaming' does not match any enabled nodes
+[0m22:05:18.857856 [warn ] [MainThread]: Nothing to do. Try checking your model configs and model specification args
+[0m22:05:18.858197 [debug] [MainThread]: Command end result
+[0m22:05:18.872009 [debug] [MainThread]: Wrote artifact WritableManifest to /Users/ankurchopra/repo_projects/projects/trino_iceberg_dbt_pipeline/dbt/target/manifest.json
+[0m22:05:18.872966 [debug] [MainThread]: Wrote artifact SemanticManifest to /Users/ankurchopra/repo_projects/projects/trino_iceberg_dbt_pipeline/dbt/target/semantic_manifest.json
+[0m22:05:18.875007 [debug] [MainThread]: Wrote artifact RunExecutionResult to /Users/ankurchopra/repo_projects/projects/trino_iceberg_dbt_pipeline/dbt/target/run_results.json
+[0m22:05:18.876398 [debug] [MainThread]: Resource report: {"command_name": "run", "command_success": true, "command_wall_clock_time": 0.9311215, "process_in_blocks": "0", "process_kernel_time": 0.177377, "process_mem_max_rss": "109789184", "process_out_blocks": "0", "process_user_time": 1.504769}
+[0m22:05:18.876708 [debug] [MainThread]: Command `dbt run` succeeded at 22:05:18.876657 after 0.93 seconds
+[0m22:05:18.876936 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x107b5c5e0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1096febe0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10a4d05e0>]}
+[0m22:05:18.877153 [debug] [MainThread]: Flushing usage events
+[0m22:05:18.996773 [debug] [MainThread]: An error was encountered while trying to flush usage events

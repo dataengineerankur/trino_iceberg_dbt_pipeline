@@ -7,6 +7,11 @@ iceberg_project:
       host: localhost
       port: 8080
       user: trino
-      database: iceberg
+      catalog: iceberg    # This is the Trino catalog name
       schema: default
       threads: 1
+      connect_timeout: 120  # Increase connection timeout to 2 minutes
+      request_timeout: 300  # Increase request timeout to 5 minutes
+      http_scheme: http  # Explicitly set to http for Trino 395
+      retries: 3          # Number of retries for failed queries
+      verify: False       # Disable SSL certificate verification

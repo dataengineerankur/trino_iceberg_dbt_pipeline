@@ -1,4 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?>
+#\!/bin/sh
+
+# Replace the core-site.xml with properly formatted tags
+cat > /etc/hadoop/conf/core-site.xml << 'EOF'
 <configuration>
     <property>
         <name>fs.s3a.access.key</name>
@@ -17,10 +20,6 @@
         <value>true</value>
     </property>
     <property>
-        <name>fs.s3a.connection.ssl.enabled</name>
-        <value>false</value>
-    </property>
-    <property>
         <name>fs.s3a.impl</name>
         <value>org.apache.hadoop.fs.s3a.S3AFileSystem</value>
     </property>
@@ -37,11 +36,14 @@
         <value>org.apache.hadoop.fs.s3a.SimpleAWSCredentialsProvider</value>
     </property>
     <property>
-        <name>fs.file.impl</name>
-        <value>org.apache.hadoop.fs.LocalFileSystem</value>
-    </property>
-    <property>
-        <name>fs.defaultFS</name>
-        <value>file:///</value>
+        <name>fs.s3a.aws.credentials.provider</name>
+        <value>org.apache.hadoop.fs.s3a.SimpleAWSCredentialsProvider</value>
     </property>
 </configuration>
+EOF
+
+# Ensure permissions are correct
+chown -R trino:trino /etc/hadoop/conf/core-site.xml
+chmod 644 /etc/hadoop/conf/core-site.xml
+
+echo "Trino initialization complete - core-site.xml has been configured correctly."

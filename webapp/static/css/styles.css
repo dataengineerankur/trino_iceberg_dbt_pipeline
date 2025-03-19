@@ -1,0 +1,116 @@
+/* Main layout */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+}
+
+h1, h2, h3, h4 {
+    color: #2c3e50;
+}
+
+/* CodeMirror editor styling */
+.CodeMirror {
+    height: auto;
+    min-height: 200px;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+}
+
+.cm-s-dracula.CodeMirror {
+    border: none;
+}
+
+/* SQL editor specific */
+#sql-editor {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#results-area {
+    overflow-x: auto;
+}
+
+/* Results table */
+.dataTables_wrapper {
+    padding: 10px 0;
+}
+
+table.dataTable {
+    border-collapse: collapse !important;
+    width: 100% !important;
+}
+
+.table thead th {
+    background-color: #f1f2f6;
+    border-bottom: 2px solid #dee2e6;
+}
+
+/* Event editor specific */
+#event-editor {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#event-history {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.event-item {
+    border-left: 4px solid #007bff;
+    margin-bottom: 8px;
+    transition: all 0.2s ease;
+}
+
+.event-item:hover {
+    border-left-color: #0056b3;
+    background-color: #f8f9fa;
+}
+
+.event-timestamp {
+    color: #6c757d;
+    font-size: 0.8em;
+}
+
+/* Schema browser */
+.catalog-item, .schema-item, .table-item {
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.catalog-item:hover, .schema-item:hover, .table-item:hover {
+    background-color: #f1f8ff;
+}
+
+.catalog-item.active, .schema-item.active, .table-item.active {
+    background-color: #e3f2fd;
+    font-weight: 500;
+}
+
+/* Error messages */
+#query-error, #event-error {
+    white-space: pre-wrap;
+    font-family: 'Courier New', Courier, monospace;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+/* Success messages */
+#event-success {
+    animation: fadeOut 5s forwards;
+    animation-delay: 3s;
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; display: none; }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .container-fluid {
+        padding: 10px;
+    }
+    
+    h1 {
+        font-size: 1.8rem;
+    }
+}

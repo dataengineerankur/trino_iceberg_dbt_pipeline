@@ -1,0 +1,20 @@
+version: '3.7'
+services:
+  webapp:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      - TRINO_HOST=trino
+      - TRINO_PORT=8080
+      - TRINO_USER=trino
+      - TRINO_CATALOG=iceberg
+      - TRINO_SCHEMA=default
+      - KAFKA_BOOTSTRAP_SERVERS=kafka:9092
+    networks:
+      - trino_default  # Use the existing Trino network
+    restart: unless-stopped
+
+networks:
+  trino_default:
+    external: true  # Connect to the existing Trino network

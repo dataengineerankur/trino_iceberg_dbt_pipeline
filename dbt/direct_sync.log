@@ -1,0 +1,27 @@
+Starting Direct Kafka to Iceberg sync at Mon Mar 17 23:48:48 EDT 2025
+Running sync once
+Running sync at Mon Mar 17 23:48:48 EDT 2025
+[0m03:48:51  Running with dbt=1.9.3
+[0m03:48:51  Registered adapter: trino=1.9.0
+[0m03:48:51  Found 5 models, 3 data tests, 1 source, 458 macros
+[0m03:48:51  
+[0m03:48:51  Concurrency: 1 threads (target='dev')
+[0m03:48:51  
+[0m03:48:51  [[33mWARNING[0m]: SSL certificate validation is disabled by default. It is legacy behavior which will be changed in future releases. It is strongly advised to enable `require_certificate_validation` flag or explicitly set `cert` configuration to `True` for security reasons. You may receive an error after that if your SSL setup is incorrect.
+You may opt into the new behavior sooner by setting `flags.require_certificate_validation` to `True` in `dbt_project.yml`.
+Visit https://docs.getdbt.com/reference/global-configs/behavior-changes for more information.
+[0m03:49:33  
+[0m03:49:33  Finished running  in 0 hours 0 minutes and 41.43 seconds (41.43s).
+[0m03:49:33  Encountered an error:
+Database Error
+  TrinoExternalError(type=EXTERNAL, name=HIVE_METASTORE_ERROR, message="172.20.0.2:9083: java.net.SocketTimeoutException: Read timed out", query_id=20250318_003845_00011_egrtd)
+[0m03:49:34  Running with dbt=1.9.3
+[0m03:49:34  Registered adapter: trino=1.9.0
+[0m03:49:34  Found 5 models, 3 data tests, 1 source, 458 macros
+[0m03:49:34  [[33mWARNING[0m]: SSL certificate validation is disabled by default. It is legacy behavior which will be changed in future releases. It is strongly advised to enable `require_certificate_validation` flag or explicitly set `cert` configuration to `True` for security reasons. You may receive an error after that if your SSL setup is incorrect.
+You may opt into the new behavior sooner by setting `flags.require_certificate_validation` to `True` in `dbt_project.yml`.
+Visit https://docs.getdbt.com/reference/global-configs/behavior-changes for more information.
+[0m03:49:34  Encountered an error while running operation: Database Error
+  TrinoUserError(type=USER_ERROR, name=NOT_SUPPORTED, message="Timestamp precision (3) not supported for Iceberg. Use "timestamp(6)" instead.", query_id=20250318_003928_00012_egrtd)
+Completed sync at Mon Mar 17 23:49:35 EDT 2025
+----------------------------------------

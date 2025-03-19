@@ -1,0 +1,46 @@
+version: 2
+
+sources:
+  - name: kafka_events
+    database: kafka
+    schema: default
+    freshness:
+      warn_after: {count: 24, period: hour}
+      error_after: {count: 72, period: hour}
+    loaded_at_field: _timestamp
+    tables:
+      - name: events_topic
+        description: "Raw Kafka events data from events_topic"
+        identifier: events_topic
+        config:
+          enable_short_names: True
+        columns:
+          - name: message
+            description: "JSON message payload"
+          - name: _kafka_offset
+            description: "Kafka offset for each message"
+          - name: _kafka_partition
+            description: "Kafka partition for each message"
+          - name: _timestamp
+            description: "Timestamp from Kafka"
+
+models:
+  - name: events_streaming
+    description: "Incremental model that syncs data from Kafka to Iceberg"
+    columns:
+      - name: id
+        description: "Unique identifier for the event"
+        tests:
+          - not_null
+      - name: name
+        description: "Name of the event"
+      - name: created_at
+        description: "Timestamp when event was created"  
+      - name: _kafka_partition
+        description: "Kafka partition the event came from"
+      - name: _kafka_offset
+        description: "Kafka offset of the event"
+        tests:
+          - not_null
+      - name: processed_at
+        description: "Timestamp when event was processed by DBT"
